@@ -1,51 +1,55 @@
 package com.product.calculatorfuture.service;
-
-import com.product.calculatorfuture.controller.CalculatorController;
-import com.product.calculatorfuture.model.Calculator;
 import com.product.calculatorfuture.repositories.CalculatorRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-@WebMvcTest(controllers = CalculatorController.class)
+
+
+@ExtendWith(MockitoExtension.class)
 public class CalculatorServiceImplTest {
-    @Autowired
-    private MockMvc mockMvc;
-    @MockBean
+    @Mock
     private CalculatorRepository calculatorRepository;
-    @SpyBean
-    private CalculatorService calculatorService;
     @InjectMocks
-    private CalculatorController calculatorController;
-    Integer NUM = 1;
-    Integer NUM2 = 3;
-    Integer NUM3 = 4;
+    private CalculatorServiceImpl out;
+    int ONE = 1;
+    int TWO = 2;
+    int THREE = 3;
 
-    Calculator calculator = new Calculator(NUM, NUM2, NUM3);
+    public void createList() {
 
-
+    }
     @Test
     void getSumTest() {
-        ArrayList<Integer> mockList = new ArrayList<>();
-        when(mockList.get(0)).thenReturn(1);
-        when(mockList.get(1)).thenReturn(2);
-        when(mockList.size()).thenReturn(2);
+        ArrayList<Integer> testList = new ArrayList<>();
+        testList.add(9);
+        testList.add(2);
 
-        int result = calculatorService.saveSum(mockList);
-        assertEquals(3,result);
+        int result = out.saveSum(testList);
+        assertEquals(11, result);
     }
+    @Test
+    void getMultiply() {
+        ArrayList<Integer> testList = new ArrayList<>();
+        testList.add(9);
+        testList.add(2);
+
+        int result = out.saveMultiply(testList);
+        assertEquals(18,result);
+    }
+    @Test
+    void getSumMultiply() {
+        int result = out.saveSumMultiply(ONE,TWO,THREE);
+        assertEquals(5,result);
+    }
+    @Test
+    void getMinus() {
+        int result = out.saveMinus(TWO,ONE);
+        assertEquals(1,result);
+    }
+
 }
