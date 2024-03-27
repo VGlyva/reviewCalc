@@ -19,7 +19,7 @@ public class CalculatorController {
 
     @GetMapping("/calculator")
     public ResponseEntity<String> helloCalc() {
-        return ResponseEntity.ok("Добро пожаловать в калькулятор");
+        return ResponseEntity.ok(calculatorService.helloCalc());
     }
 
     @GetMapping("/sum")
