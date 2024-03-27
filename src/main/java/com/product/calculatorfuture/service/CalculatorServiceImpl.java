@@ -13,6 +13,10 @@ public class CalculatorServiceImpl implements CalculatorService {
     public CalculatorServiceImpl(CalculatorRepository calculatorRepository) {
         this.calculatorRepository = calculatorRepository;
     }
+    @Override
+    public String helloCalc() {
+        return "Добро пожаловать в калькулятор";
+    }
 
     @Override
     public Integer saveSum(ArrayList<Integer> args) {

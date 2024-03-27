@@ -6,14 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class CalculatorFutureApplicationTests {
-	private final CalculatorServiceImpl calculatorService;
 
-	CalculatorFutureApplicationTests(CalculatorServiceImpl calculatorService) {
-		this.calculatorService = calculatorService;
-	}
-
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

@@ -1,17 +1,16 @@
 package com.product.calculatorfuture.controller;
-
+import com.product.calculatorfuture.service.CalculatorService;
 import com.product.calculatorfuture.service.CalculatorServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 
 
 @RestController
 public class CalculatorController {
-    private final CalculatorServiceImpl calculatorService;
+    private final CalculatorService calculatorService;
 
     public CalculatorController(CalculatorServiceImpl calculatorService) {
         this.calculatorService = calculatorService;
@@ -19,7 +18,7 @@ public class CalculatorController {
 
     @GetMapping("/calculator")
     public ResponseEntity<String> helloCalc() {
-        return ResponseEntity.ok("Добро пожаловать в калькулятор");
+        return ResponseEntity.ok(calculatorService.helloCalc());
     }
 
     @GetMapping("/sum")
